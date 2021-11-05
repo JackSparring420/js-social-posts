@@ -24,7 +24,7 @@ const arrayOgg = [
         "fotoProfilo" : "https://unsplash.it/300/300?image=15",
         "data" : "4 minuti fa",
         "post" : "loLorem ipsum dolor, sit amet consectetur adipisicing elit. Atque accusantium repudiandae porro numquam, consectetur tempore aperiam est ipsum quod architecto dicta vitae fugiat saepe in tempora dignissimos obcaecati repellendus ex!",
-        
+        "fotoPost" : "",
         "likes" : 43
     },
     
@@ -41,30 +41,28 @@ const arrayOgg = [
 
 // stampo array oggetti
 const stamp = document.querySelector(".posts-list");
-
 stampArrayOgg()
 
 // incremento like al click
 let buttons = document.querySelectorAll(".js-like-button");
-let numerolike = document.querySelectorAll(".js-likes-counter");
+
 
 for(let i=0; i< buttons.length; i++) {
-    buttons[i].addEventListener("click", function(){
+    buttons[i].addEventListener("click", function() {
         const index = this.getAttribute("data-postid");
-        post[index].likes = post[index].likes +1;
+        arrayOgg[index].likes++;
         stampArrayOgg()
-    }
+    }, );
 }
 
-
-function stampArrayOgg (){
+function stampArrayOgg() {
     let card =""
     // prendo tutti gli oggetti nell'array
     for(let i = 0; i < arrayOgg.length; i++) {
         // inserisco gli ogg in una variabile per poter selezionare le propietà 
         var objArrayOgg = arrayOgg[i];
 
-        console.log(objArrayOgg);
+        // console.log(objArrayOgg);
         // stampo testo html per il creare il contenuto delle carte nella var teamCard inserendo le propietà degli oggetti  
         card += `
         <div class="post">
@@ -86,7 +84,7 @@ function stampArrayOgg (){
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="${i}">
+                    <a class="like-button  js-like-button" data-postid="${i}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -99,6 +97,6 @@ function stampArrayOgg (){
     </div>`
     }
 
-console.log(card);
+// console.log(card);
 stamp.innerHTML = card;
 }

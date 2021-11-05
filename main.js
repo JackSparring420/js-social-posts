@@ -51,7 +51,7 @@ let numerolike = document.querySelectorAll(".js-likes-counter");
 for(let i=0; i< buttons.length; i++) {
     buttons[i].addEventListener("click", function(){
         const index = this.getAttribute("data-postid");
-        post[index.likes] = post[index].likes +1;
+        post[index].likes = post[index].likes +1;
         stampArrayOgg()
     }
 }

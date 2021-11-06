@@ -7,7 +7,8 @@ const arrayOgg = [
         "data" : "4 minuti fa",
         "post" : "loLorem ipsum dolor, sit amet consectetur adipisicing elit. Atque accusantium repudiandae porro numquam, consectetur tempore aperiam est ipsum quod architecto dicta vitae fugiat saepe in tempora dignissimos obcaecati repellendus ex!",
         "fotoPost" : "https://unsplash.it/600/300?image=171",
-        "likes" : 80
+        "likes" : 80,
+        "color" : ""
     },
     
     {
@@ -16,7 +17,8 @@ const arrayOgg = [
         "data" : "4 minuti fa",
         "post" : "loLorem ipsum dolor, sit amet consectetur adipisicing elit. Atque accusantium repudiandae porro numquam, consectetur tempore aperiam est ipsum quod architecto dicta vitae fugiat saepe in tempora dignissimos obcaecati repellendus ex!",
         "fotoPost" : "https://unsplash.it/600/300?image=171",
-        "likes" : 35
+        "likes" : 35,
+        "color" : ""
     },
     
     {
@@ -25,7 +27,8 @@ const arrayOgg = [
         "data" : "4 minuti fa",
         "post" : "loLorem ipsum dolor, sit amet consectetur adipisicing elit. Atque accusantium repudiandae porro numquam, consectetur tempore aperiam est ipsum quod architecto dicta vitae fugiat saepe in tempora dignissimos obcaecati repellendus ex!",
         "fotoPost" : "",
-        "likes" : 43
+        "likes" : 43,
+        "color" : ""
     },
     
     {
@@ -34,7 +37,8 @@ const arrayOgg = [
         "data" : "4 minuti fa",
         "post" : "loLorem ipsum dolor, sit amet consectetur adipisicing elit. Atque accusantium repudiandae porro numquam, consectetur tempore aperiam est ipsum quod architecto dicta vitae fugiat saepe in tempora dignissimos obcaecati repellendus ex!",
         "fotoPost" : "https://unsplash.it/600/300?image=171",
-        "likes" : 60
+        "likes" : 60,
+        "color" : ""
     }
     
 ]
@@ -45,15 +49,22 @@ stampArrayOgg()
 
 // incremento like al click
 let buttons = document.querySelectorAll(".js-like-button");
+console.log("buttons ", buttons);
 
 
 for(let i=0; i< buttons.length; i++) {
     buttons[i].addEventListener("click", function() {
         const index = this.getAttribute("data-postid");
         arrayOgg[index].likes++;
+        arrayOgg[index].color = "like-button--liked"
+        // buttons[i].classList.add("like-button--liked");
         stampArrayOgg()
-    }, );
+    } );
 }
+
+
+
+
 
 function stampArrayOgg() {
     let card =""
@@ -61,7 +72,7 @@ function stampArrayOgg() {
     for(let i = 0; i < arrayOgg.length; i++) {
         // inserisco gli ogg in una variabile per poter selezionare le propietà 
         var objArrayOgg = arrayOgg[i];
-
+        // let nodo = parametro
         // console.log(objArrayOgg);
         // stampo testo html per il creare il contenuto delle carte nella var teamCard inserendo le propietà degli oggetti  
         card += `
@@ -84,10 +95,10 @@ function stampArrayOgg() {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" data-postid="${i}">
+                    <span class="like-button  js-like-button ${objArrayOgg.color}" data-postid="${i}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
-                    </a>
+                    </span>
                 </div>
                 <div class="likes__counter">
                     Piace a <b id="like-counter-1" class="js-likes-counter">${objArrayOgg.likes}</b> persone
